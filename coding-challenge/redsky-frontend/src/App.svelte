@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  
 
   interface User {
     id: number;
@@ -154,9 +155,8 @@
   </div>
 </div>
 {/if}
-
 <style>
-  :root {
+:root {
   --primary-color: #DD013F;
   --secondary-color: #081430;
   --white-color: #FFFFFF;
@@ -167,42 +167,43 @@
 
 .user-list-container {
   border: 2px solid var(--border-color);
-  border-radius: 10px;
   background-color: var(--background-color);
-
 }
 
- .user-list-header {
-     display: flex;
-    justify-content: flex-end; 
-    margin-bottom: 20px; 
-  }
-.user-container{
-	width : 70%;
-	margin: 0 auto;
+.user-list-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
- .create-button {
-    background-color: #DD013F; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    text-transform: uppercase;
-	margin-left: 10px;
-  }
+
+.user-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.create-button {
+  background-color: #DD013F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
 .user-list {
-    background-color: #DD013F;
-	width: 100%;
-	margin-top : -20px;
-	padding-left: 10px;
+  background-color: #DD013F;
+  width: 100%;
+  margin-top: -20px;
 }
 
 .user-list h2 {
-    color: white; /* White text */
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
+  color: white; /* White text */
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding-left: 10px;
 }
 
 table {
@@ -211,17 +212,17 @@ table {
 }
 
 th {
-
   color: black;
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;
-  padding-left : 10px;
+  
 }
 
 td {
   text-align: left;
   border-bottom: 1px solid #ddd;
+  padding: 10px;
 }
 
 td.action-buttons {
@@ -232,7 +233,6 @@ td.action-buttons {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  padding-left : 20px;
 }
 
 button.edit {
@@ -243,97 +243,150 @@ button.edit {
 button.delete {
   background-color: var(--primary-color);
   color: var(--white-color);
-  margin-right : 10px;
+  margin-right: 10px;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal {
+  background-color: #F9F9F9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
 
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.modal-header {
+  background-color: #DD013F;
+  padding: 15px;
+}
 
+.modal-header h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+  color: black;
+}
+
+input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.create-btn,
+.cancel-btn {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.create-btn {
+  background-color: #DD013F;
+  color: white;
+  border: 2px solid #DD013F;
+}
+
+.cancel-btn {
+  background-color: white;
+  color: #DD013F;
+  border: 2px solid #DD013F;
+}
+
+.create-btn:hover,
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
+/* Media Queries for responsiveness */
+
+/* Large screens and above */
+@media (min-width: 1200px) {
   .modal {
-    background-color: #F9F9F9;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-	width : 50%;
-	margin: 0 auto;
-
+    width: 40%;
   }
 
-  .modal-header {
-    background-color: #DD013F;
-    padding: 15px;
-    border-radius: 10px 10px 0 0;
+  .user-container {
+    width: 60%;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .modal {
+    width: 60%;
   }
 
-  .modal-header h2 {
-    color: white;
-    font-size: 24px;
-    margin: 0;
+  .user-container {
+    width: 80%;
   }
 
-  label {
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    display: block;
-    color: black;
-	padding : 10px;
+  .create-button {
+    font-size: 12px;
+  }
+}
+
+/* Small screens (mobile devices) */
+@media (max-width: 767px) {
+  .modal {
+    width: 90%;
+  }
+
+  .user-container {
+    width: 100%;
+  }
+
+  .create-button {
+    font-size: 10px;
   }
 
   input {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 15px;
-	margin:10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    width: 100%;
+    margin: 5px;
+    padding: 8px;
+  }
+
+  .create-btn,
+  .cancel-btn {
+    width: 100%;
+    font-size: 14px;
   }
 
   .button-group {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: stretch;
   }
-
-  .create-btn, .cancel-btn {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 10px 20px;
-	margin-right: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .create-btn {
-    background-color: #DD013F;
-    color: white;
-    border: 2px solid #DD013F;
-  }
-
-  .cancel-btn {
-    background-color: white;
-    color: #DD013F;
-    border: 2px solid #DD013F;
-  }
-
-
-  .create-btn:hover, .cancel-btn:hover {
-    opacity: 0.9;
-  }
-
-
+}
 </style>
