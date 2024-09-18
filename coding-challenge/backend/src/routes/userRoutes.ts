@@ -52,4 +52,17 @@ router.put("/:id", (req: Request, res: Response) => {
 
   if (userIndex >= 0) {
     users[userIndex] = { ...users[userIndex], ...req.body };
-    res.json(users[
+    res.json(users[userIndex]);
+  } else {
+    res.status(404).send("User not found");
+  }
+});
+
+// DELETE a user
+router.delete("/:id", (req: Request, res: Response) => {
+  const userId = parseInt(req.params.id, 10);
+  users = users.filter(user => user.id !== userId);
+  res.status(204).send();
+});
+
+export default router;
