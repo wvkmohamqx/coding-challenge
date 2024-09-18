@@ -16,3 +16,8 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+//initial request
+app.get("/", (req, res) => {
+  res.send("Welcome to the API!");
+});
