@@ -3,10 +3,12 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 
 const app = express();
-app.use(express.json());
-app.use(cors()); // To allow requests from the frontend
 
-// Use the user routes
+// Middleware
+app.use(express.json()); // Parse JSON bodies
+app.use(cors()); // Enable CORS for all routes
+
+// Use user routes
 app.use("/users", userRoutes);
 
 // Start the server

@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import axios from "axios";
 
 const router = Router();
@@ -27,41 +27,29 @@ const fetchInitialUsers = async () => {
 fetchInitialUsers();
 
 // GET all users
-router.get("/", (req, res) => {
+router.get("/", (req: Request, res: Response) => {
   res.json(users);
 });
 
 // POST to create a new user
-router.post("/", (req, res) => {
+router.post("/", (req: Request, res: Response) => {
+  const { first_name, last_name, email, avatar } = req.body;
   const newUser: User = {
     id: users.length > 0 ? users[users.length - 1].id + 1 : 1,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    avatar: req.body.avatar
+    first_name,
+    last_name,
+    email,
+    avatar
   };
   users.push(newUser);
   res.status(201).json(newUser);
 });
 
 // PUT to update an existing user
-router.put("/:id", (req, res) => {
+router.put("/:id", (req: Request, res: Response) => {
   const userId = parseInt(req.params.id, 10);
   const userIndex = users.findIndex(u => u.id === userId);
 
   if (userIndex >= 0) {
     users[userIndex] = { ...users[userIndex], ...req.body };
-    res.json(users[userIndex]);
-  } else {
-    res.status(404).send("User not found");
-  }
-});
-
-// DELETE a user
-router.delete("/:id", (req, res) => {
-  const userId = parseInt(req.params.id, 10);
-  users = users.filter(user => user.id !== userId);
-  res.status(204).send();
-});
-
-export default router;
+    res.json(users[
