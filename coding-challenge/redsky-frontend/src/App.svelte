@@ -16,7 +16,7 @@
   let editMode = false;
   let showModal = false;
 
-  const apiUrl = 'https://my-server-3n7g.onrender.com';
+  const apiUrl = 'http://localhost:3000/users';
 
   async function fetchUsers() {
     const response = await fetch(apiUrl);
