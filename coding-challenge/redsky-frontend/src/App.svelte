@@ -177,7 +177,7 @@
 }
 
 .user-container {
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -216,7 +216,7 @@ th {
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;
-  
+  padding: 10px;
 }
 
 td {
@@ -233,6 +233,7 @@ td.action-buttons {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  padding-left: 10px;
 }
 
 button.edit {
@@ -284,6 +285,7 @@ label {
   margin-bottom: 5px;
   display: block;
   color: black;
+  padding:10px;
 }
 
 input {
