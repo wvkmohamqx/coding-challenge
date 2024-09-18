@@ -1,6 +1,9 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
-
   "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "exclude": ["node_modules", "__sapper__"],
+  "compilerOptions": {
+    "sourceMap": true, // Enable source maps
+    "outDir": "public/build" // Ensure output goes to the right directory
+  }
 }
