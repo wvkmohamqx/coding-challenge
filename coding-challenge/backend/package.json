@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "dist/index.js", // Changed to reflect the output directory after build
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "postinstall": "yarn build" // Builds after installation
+    "postinstall": "yarn build"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.7",
+    "backend": "file:",
     "cors": "^2.8.5",
     "express": "^4.21.0"
   },
